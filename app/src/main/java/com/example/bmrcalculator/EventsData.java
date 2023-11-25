@@ -5,6 +5,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import static android.provider.BaseColumns._ID;
 import static com.example.bmrcalculator.Constants.BMR;
+import static com.example.bmrcalculator.Constants.CARB;
+import static com.example.bmrcalculator.Constants.FAT;
+import static com.example.bmrcalculator.Constants.PROTEIN;
 import static com.example.bmrcalculator.Constants.TABLE_NAME_INFO;
 import static com.example.bmrcalculator.Constants.TABLE_NAME_DAILY;
 import static com.example.bmrcalculator.Constants.FOOD;
@@ -18,12 +21,14 @@ public class EventsData extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TABLE_NAME_INFO + " ("
-                + BMR + " DOUBLE); ");
         db.execSQL("CREATE TABLE " + TABLE_NAME_DAILY + " ("
                 + DATE + " TEXT NOT NULL, "
                 + PICTURE + " TEXT NOT NULL, "
                 + FOOD + " TEXT NOT NULL, "
+                + PROTEIN + " INTEGER, "
+                + FAT + " INTEGER, "
+                + CARB + " INTEGER, "
+                + BMR + " DOUBLE, "
                 + CALORIES + " INTEGER);"  );
     }
     @Override

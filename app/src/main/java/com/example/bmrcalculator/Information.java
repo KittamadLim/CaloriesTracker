@@ -35,6 +35,7 @@ public class Information extends AppCompatActivity {
         DecimalFormat formatter = new DecimalFormat("#,###.##");
         final TextView cal_btn = findViewById(R.id.cal_btn1);
         final TextView Back_btn = findViewById(R.id.back_Btn);
+        Intent intent = new Intent(Information.this, MainActivity.class);
         Back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,8 +43,7 @@ public class Information extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(Information.this);
                 builder.setMessage("Do you want to leave this page ?");
                 builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        Intent intent = new Intent(Information.this, MainActivity.class);
+                    public void onClick(DialogInterface dialog, int id){
                         startActivity(intent);
                     }
                 });
@@ -59,15 +59,9 @@ public class Information extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 calulate_bmr();
-                events = new EventsData(Information.this);
-                try{
-                    addBMR();
-                }finally {
-                    events.close();
-                }
+                intent.putExtra("bmr",bmr_cal);
             }
         });
-
     }
 
     private void calulate_bmr(){
@@ -123,19 +117,6 @@ public class Information extends AppCompatActivity {
                 new DecimalDigitsInputFilter(8, 2)
         });
         bmr.setText(Double.toString(bmr_cal));
-    }
-
-    private void addBMR(){
-        SQLiteDatabase db = events.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(BMR,bmr_cal);
-        long rowId = db.insert(TABLE_NAME_INFO, null, values);
-
-        if (rowId != -1) {
-            System.out.println("Inserted into the database with row ID: " + rowId);
-        } else {
-            System.out.println("Error inserting into the database");
-        }
     }
 
 }

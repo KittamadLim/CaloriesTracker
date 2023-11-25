@@ -30,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
         add_food.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intentReceive = getIntent();
+                double bmr = intentReceive.getDoubleExtra("bmr",0.0);
+                intent2.putExtra("bmr",bmr);
                 startActivity(intent2);
             }
         });
