@@ -1,25 +1,18 @@
 package com.example.bmrcalculator;
 
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.database.sqlite.SQLiteDatabase;
-import static com.example.bmrcalculator.Constants.BMR;
-import static com.example.bmrcalculator.Constants.TABLE_NAME_INFO;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
-import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
 import java.util.regex.Matcher;

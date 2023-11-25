@@ -35,9 +35,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static com.example.bmrcalculator.Constants.BMR;
 import static com.example.bmrcalculator.Constants.CALORIES;
 import static com.example.bmrcalculator.Constants.CARB;
@@ -51,8 +48,6 @@ import static com.example.bmrcalculator.Constants.TABLE_NAME_DAILY;
 public class Addfood extends AppCompatActivity {
     private Uri image_uri;
     private EventsData events;
-//    private List<Data> datas = new ArrayList<>();
-
     ActivityResultLauncher<Intent> activityResultLauncher3 = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
