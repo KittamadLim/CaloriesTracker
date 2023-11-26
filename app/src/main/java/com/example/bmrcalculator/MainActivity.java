@@ -93,8 +93,10 @@ public class MainActivity extends AppCompatActivity {
     }
     private void setBMR(Cursor cursor){
         String bmr = null;
-        while(cursor.moveToNext()) {
-            bmr = String.valueOf(cursor.getFloat(1));
+        if(cursor!=null) {
+            while(cursor.moveToNext()) {
+                bmr = String.valueOf(cursor.getFloat(1));
+            }
         }
         final TextView setbmr = findViewById(R.id.Yourbmr_value);
         setbmr.setText(bmr);
@@ -119,6 +121,4 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new MyAdapter(datas);
         recyclerView.setAdapter(mAdapter);
     }
-
-
 }
