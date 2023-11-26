@@ -82,16 +82,17 @@ public class MainActivity extends AppCompatActivity {
 
     private void showEvents(Cursor cursor) {
         datas.clear();
-
+        int columnIndex = -1;
         while(cursor.moveToNext()) {
+
             if(cursor!=null) {
-                String title = cursor.getString(3);
+                String title = cursor.getString(1);
                 String imageString = cursor.getString(2);
-                String protein = String.valueOf(cursor.getInt(4));
-                String fat = String.valueOf(cursor.getInt(5));
-                String carb = String.valueOf(cursor.getInt(6));
-//                String cal = String.valueOf(cursor.getInt(8));
-                datas.add(new Data("" + title, "" + "200", "" + protein, "" + carb, "" + fat, imageString));
+                String protein = String.valueOf(cursor.getInt(3));
+                String fat = String.valueOf(cursor.getInt(6));
+                String carb = String.valueOf(cursor.getInt(5));
+                String cal = String.valueOf(cursor.getInt(4));
+                datas.add(new Data("" + title, "" + cal, "" + protein, "" + carb, "" + fat, imageString));
             }
         }
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
