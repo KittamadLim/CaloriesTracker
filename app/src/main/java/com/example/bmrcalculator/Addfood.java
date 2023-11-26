@@ -60,6 +60,7 @@ public class Addfood extends AppCompatActivity {
                             try {
                                 ImageView imageView = (ImageView) findViewById(R.id.imageViewFood);
                                 imageView.getLayoutParams().height = 400;
+                                imageView.getLayoutParams().width = 400;
                                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                                 imageView.setImageBitmap(bitmap);
                             } catch (FileNotFoundException e) {

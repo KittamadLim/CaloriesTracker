@@ -87,6 +87,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+
+        final TextView info = findViewById(R.id.textgocal);
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent1);
+            }
+        });
         //Add Food Function
         add_food.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
                         Spanned spanned = Html.fromHtml(coloredText, Html.FROM_HTML_MODE_LEGACY);
                         setCal.setText(spanned);
                     }
-                }else if(bmrs > todayCal){
+                }else if(bmrs >= todayCal){
                     int check = (bmrs - todayCal) ;
                     if(check <= 100){
                         String todayCalString = String.valueOf(todayCal);
