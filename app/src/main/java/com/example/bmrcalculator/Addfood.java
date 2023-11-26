@@ -89,7 +89,7 @@ public class Addfood extends AppCompatActivity {
             }
         });
 
-        final TextView back_Btn = findViewById(R.id.info_btn);
+        final ImageView back_Btn = findViewById(R.id.info_btn);
         back_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

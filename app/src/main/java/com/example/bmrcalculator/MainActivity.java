@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final ImageView info_btn = findViewById(R.id.info_btn);
+        final ImageView info_btn = findViewById(R.id.back_Btn);
         final ImageButton add_food = findViewById(R.id.add_btn);
 
         Intent intent1 = new Intent(MainActivity.this, Information.class);
