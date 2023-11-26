@@ -9,8 +9,8 @@
     android:layout_margin="12dp"
     android:foreground="?android:selectableItemBackground"
     cardview:cardBackgroundColor="#FEFEFE"
-    cardview:cardCornerRadius="8dp"
-    cardview:cardElevation="2dp"
+    cardview:cardCornerRadius="10dp"
+    cardview:cardElevation="10dp"
     cardview:contentPadding="3dp">
 
     <LinearLayout
@@ -22,6 +22,7 @@
             android:layout_width="159dp"
             android:layout_height="133dp"
             android:adjustViewBounds="true"
+            android:paddingEnd="10dp"
             android:scaleType="centerCrop"
             android:src="@mipmap/ic_launcher"
             tools:ignore="ContentDescription,ImageContrastCheck" />
@@ -35,10 +36,11 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="5dp"
+                android:text="test"
                 android:textColor="#333"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -57,9 +59,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="5dp"
+                    android:text="0"
                     android:textColor="#056"
-                    android:textSize="12sp" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
@@ -79,10 +81,10 @@
                     android:id="@+id/carb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="30dp"
+                    android:text="0"
                     android:textColor="#056"
-                    android:textSize="12sp" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
@@ -101,7 +103,11 @@
                 <TextView
                     android:id="@+id/protein"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:text="0"
+                    android:textColor="#056"
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -120,10 +126,10 @@
                     android:id="@+id/fat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="40dp"
+                    android:text="0"
                     android:textColor="#056"
-                    android:textSize="16sp" />
+                    android:textSize="15sp" />
             </LinearLayout>
         </LinearLayout>
 

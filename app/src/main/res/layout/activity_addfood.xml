@@ -102,7 +102,7 @@
             tools:layout_editor_absoluteX="30dp">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layoutAddname"
+                android:id="@+id/layoutAddfood"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingBottom="5sp"
