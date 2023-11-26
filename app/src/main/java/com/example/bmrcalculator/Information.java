@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,8 +53,42 @@ public class Information extends AppCompatActivity {
         cal_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                calulate_bmr();
-                intent.putExtra("bmr",bmr_cal);
+                if (isDataValid()) {
+                    calulate_bmr();
+                    intent.putExtra("bmr", bmr_cal);
+                    Toast.makeText(getApplicationContext(), "Calculate Success", Toast.LENGTH_SHORT).show();
+                    new android.os.Handler().postDelayed(
+                            new Runnable() {
+                                public void run() {
+                                    startActivity(intent);
+                                }
+                            },
+                            2000 //
+                    );
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Information.this);
+                    builder.setMessage("Please fill out the information completely.");
+                    builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+            }
+
+            private boolean isDataValid() {
+                EditText height_input = findViewById(R.id.height_input);
+                EditText weight_input = findViewById(R.id.weight_input);
+                EditText age_input = findViewById(R.id.age_input);
+                RadioGroup radioGroupGender = findViewById(R.id.genderGroup);
+                RadioGroup radioGroupFrequency = findViewById(R.id.frequencyGroup);
+
+                return !height_input.getText().toString().isEmpty() &&
+                        !weight_input.getText().toString().isEmpty() &&
+                        !age_input.getText().toString().isEmpty() &&
+                        radioGroupGender.getCheckedRadioButtonId() != -1 &&
+                        radioGroupFrequency.getCheckedRadioButtonId() != -1;
             }
         });
     }
