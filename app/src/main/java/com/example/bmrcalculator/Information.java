@@ -38,7 +38,6 @@ public class Information extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_infomation);
         AndroidThreeTen.init(this);
-        DecimalFormat formatter = new DecimalFormat("#,###.##");
         final TextView cal_btn = findViewById(R.id.cal_btn1);
         final ImageView Back_btn = findViewById(R.id.info_btn);
         Intent intent = new Intent(Information.this, MainActivity.class);
@@ -130,39 +129,36 @@ public class Information extends AppCompatActivity {
 
         if(checkedRadioFrequency.getText().equals("none")){
             if(checkedRadioGender.getText().equals("male")){
-                bmr_cal =(66+(13.7*weight)+(5*height)-(6.8*age))*1.2;
+                bmr_cal =(88.362+(13.397*weight)+(4.799*height)-(5.677*age))*1.2;
             }else{
-                bmr_cal = (665+(9.6*weight)+(1.8*height)-(4.7*age))*1.2;
+                bmr_cal = (447.593+(9.247*weight)+(3.098*height)-(4.330*age))*1.2;
             }
         }else if(checkedRadioFrequency.getText().equals("1-3 days/week")){
             if(checkedRadioGender.getText().equals("male")){
-                bmr_cal =(66+(13.7*weight)+(5*height)-(6.8*age))*1.375;
+                bmr_cal =(88.362+(13.397*weight)+(4.799*height)-(5.677*age))*1.375;
             }else{
-                bmr_cal =(665+(9.6*weight)+(1.8*height)-(4.7*age))*1.375;
+                bmr_cal =(447.593+(9.247*weight)+(3.098*height)-(4.330*age))*1.375;
             }
         }else if(checkedRadioFrequency.getText().equals("3-5 days/week")){
             if(checkedRadioGender.getText().equals("male")){
-                bmr_cal =(66+(13.7*weight)+(5*height)-(6.8*age))*1.55;
+                bmr_cal =(88.362+(13.397*weight)+(4.799*height)-(5.677*age))*1.55;
             }else{
-                bmr_cal =(665+(9.6*weight)+(1.8*height)-(4.7*age))*1.55;
+                bmr_cal =(447.593+(9.247*weight)+(3.098*height)-(4.330*age))*1.55;
             }
         }else if(checkedRadioFrequency.getText().equals("6-7 days/week")){
             if(checkedRadioGender.getText().equals("male")){
-                bmr_cal =(66+(13.7*weight)+(5*height)-(6.8*age))*1.725;
+                bmr_cal =(88.362+(13.397*weight)+(4.799*height)-(5.677*age))*1.725;
             }else{
-                bmr_cal =(665+(9.6*weight)+(1.8*height)-(4.7*age))*1.725;
+                bmr_cal =(447.593+(9.247*weight)+(3.098*height)-(4.330*age))*1.725;
             }
         }else{
             if(checkedRadioGender.getText().equals("male")){
-                bmr_cal =(66+(13.7*weight)+(5*height)-(6.8*age))*1.9;
+                bmr_cal =(88.362+(13.397*weight)+(4.799*height)-(5.677*age))*1.9;
             }else{
-                bmr_cal =(665+(9.6*weight)+(1.8*height)-(4.7*age))*1.9;
+                bmr_cal =(447.593+(9.247*weight)+(3.098*height)-(4.330*age))*1.9;
             }
         }
 
-        bmr.setFilters(new InputFilter[]{
-                new DecimalDigitsInputFilter(8, 2)
-        });
         int bmrInt = (int)bmr_cal;
         bmr.setText(Integer.toString(bmrInt));
     }
@@ -183,22 +179,5 @@ public class Information extends AppCompatActivity {
             System.out.println("Error inserting into the database");
         }
     }
-
-}
-
-class DecimalDigitsInputFilter implements InputFilter {
-    private Pattern mPattern;
-    DecimalDigitsInputFilter(int digits, int digitsAfterZero) {
-        mPattern = Pattern.compile("[0-9]{0," + (digits - 1) + "}+((\\.[0-9]{0," + (digitsAfterZero - 1) +        "})?)||(\\.)?");
-    }
-    @Override
-    public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend)
-    {
-        Matcher matcher = mPattern.matcher(dest);
-        if (!matcher.matches())
-            return "";
-        return null;
-    }
-
 
 }
