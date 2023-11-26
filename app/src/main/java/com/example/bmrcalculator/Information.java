@@ -35,12 +35,12 @@ public class Information extends AppCompatActivity {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(Information.this);
                 builder.setMessage("Do you want to leave this page ?");
-                builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id){
                         startActivity(intent);
                     }
                 });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                     }
                 });
