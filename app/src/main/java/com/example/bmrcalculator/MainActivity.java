@@ -22,6 +22,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.Spanned;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         final ImageView info_btn = findViewById(R.id.back_Btn);
         final ImageButton add_food = findViewById(R.id.add_btn);
         final TextView secretbtn = findViewById(R.id.BMRcalculater);
+        int daybmr = 0 ;
         secretbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,9 +120,9 @@ public class MainActivity extends AppCompatActivity {
     }
     private Cursor getBMR(){
         String[] FROM = {DATE2, BMR2};
-        String ORDER_BY = DATE2 + " ASC";
+        String ORDER_BY = DATE2 + " DESC";
         SQLiteDatabase db = events.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_BMR, FROM, null, null, null, null, ORDER_BY);
+        Cursor cursor = db.query(TABLE_BMR, FROM, null, null, null, null, ORDER_BY,"1");
         return cursor;
     }
 
@@ -142,11 +145,65 @@ public class MainActivity extends AppCompatActivity {
         if(cursor!=null) {
             while(cursor.moveToNext()) {
                 todayCal += (int) cursor.getFloat(1);
-                System.out.println(todayCal);
             }
         }
-       final TextView setCal = findViewById(R.id.calValue);
-       setCal.setText(Integer.toString(todayCal));
+        final TextView setCal = findViewById(R.id.calValue);
+        Cursor forbmr = getBMR() ;
+        int bmrs = BMRfind(forbmr) ;
+                if(todayCal > bmrs){
+                    int check = (todayCal - bmrs) ;
+                    if(check <= 100){
+                        String todayCalString = String.valueOf(todayCal);
+                        String coloredText = "<font color='#7CFC00'>" + todayCalString + "</font>";
+                        Spanned spanned = Html.fromHtml(coloredText, Html.FROM_HTML_MODE_LEGACY);
+                        setCal.setText(spanned);
+                    }else if(check > 100 && check <= 300){
+                        String todayCalString = String.valueOf(todayCal);
+                        String coloredText = "<font color='#1E90FF'>" + todayCalString + "</font>";
+                        Spanned spanned = Html.fromHtml(coloredText, Html.FROM_HTML_MODE_LEGACY);
+                        setCal.setText(spanned);
+                    }else{
+                        String todayCalString = String.valueOf(todayCal);
+                        String coloredText = "<font color='#DC143C'>" + todayCalString + "</font>";
+                        Spanned spanned = Html.fromHtml(coloredText, Html.FROM_HTML_MODE_LEGACY);
+                        setCal.setText(spanned);
+                    }
+                }else if(bmrs > todayCal){
+                    int check = (bmrs - todayCal) ;
+                    if(check <= 100){
+                        String todayCalString = String.valueOf(todayCal);
+                        String coloredText = "<font color='#7CFC00'>" + todayCalString + "</font>";
+                        Spanned spanned = Html.fromHtml(coloredText, Html.FROM_HTML_MODE_LEGACY);
+                        setCal.setText(spanned);
+                    }else if(check > 100 && check <= 300){
+                        String todayCalString = String.valueOf(todayCal);
+                        String coloredText = "<font color='#1E90FF'>" + todayCalString + "</font>";
+                        Spanned spanned = Html.fromHtml(coloredText, Html.FROM_HTML_MODE_LEGACY);
+                        setCal.setText(spanned);
+                    }else {
+                        String todayCalString = String.valueOf(todayCal);
+                        String coloredText = "<font color='#DC143C'>" + todayCalString + "</font>";
+                        Spanned spanned = Html.fromHtml(coloredText, Html.FROM_HTML_MODE_LEGACY);
+                        setCal.setText(spanned);
+                    }
+
+                }else{
+                    setCal.setText(todayCal);
+                }
+
+
+
+
+
+    }
+    private int BMRfind(Cursor cursor){
+        int bmr = 0;
+        if(cursor!=null) {
+            while(cursor.moveToNext()) {
+                bmr = (int) cursor.getFloat(1);
+            }
+        }
+        return bmr ;
     }
     private void setBMR(Cursor cursor){
         String bmr = null;
@@ -159,6 +216,7 @@ public class MainActivity extends AppCompatActivity {
 
         final TextView setbmr = findViewById(R.id.Yourbmr_value);
         setbmr.setText(bmr);
+
     }
     private void showEvents(Cursor cursor) {
         datas.clear();
