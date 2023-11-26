@@ -28,8 +28,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.VideoView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -91,7 +89,7 @@ public class Addfood extends AppCompatActivity {
             }
         });
 
-        final TextView back_Btn = findViewById(R.id.back_Btn);
+        final ImageView back_Btn = findViewById(R.id.info_btn);
         back_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
