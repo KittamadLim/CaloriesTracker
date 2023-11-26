@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent1 = new Intent(MainActivity.this, Information.class);
         Intent intent2 = new Intent(MainActivity.this, Addfood.class);
+
         //BMR Calulator Function
         info_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,18 +61,17 @@ public class MainActivity extends AppCompatActivity {
                 double bmr = intentReceive.getDoubleExtra("bmr",0.0);
                 intent2.putExtra("bmr",bmr);
                 startActivity(intent2);
-                events = new EventsData(MainActivity.this);
-                try{
-                    Cursor cursor = getEvents();
-                    showEvents(cursor);
-                }finally{
-                    events.close();
-                }
             }
         });
 
         //Show History
-
+        events = new EventsData(MainActivity.this);
+        try{
+            Cursor cursor = getEvents();
+            showEvents(cursor);
+        }finally{
+            events.close();
+        }
     }
     private Cursor getEvents() {
         String[] FROM = {DATE, FOOD, PICTURE ,CARB,CALORIES,PROTEIN,FAT};
@@ -91,14 +91,13 @@ public class MainActivity extends AppCompatActivity {
                 String protein = String.valueOf(cursor.getInt(4));
                 String fat = String.valueOf(cursor.getInt(5));
                 String carb = String.valueOf(cursor.getInt(6));
-                String cal = String.valueOf(cursor.getInt(8));
-                datas.add(new Data("" + title, "" + cal, "" + protein, "" + carb, "" + fat, imageString));
+//                String cal = String.valueOf(cursor.getInt(8));
+                datas.add(new Data("" + title, "" + "200", "" + protein, "" + carb, "" + fat, imageString));
             }
         }
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-
         mAdapter = new MyAdapter(datas);
         recyclerView.setAdapter(mAdapter);
     }
