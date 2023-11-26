@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         String bmr = null;
             while(cursor.moveToNext()) {
                 bmr = String.valueOf((int) cursor.getFloat(1));
+                System.out.println(bmr);
             }
         final TextView setbmr = findViewById(R.id.Yourbmr_value);
         setbmr.setText(bmr);
