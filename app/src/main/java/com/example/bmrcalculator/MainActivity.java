@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
                         Spanned spanned = Html.fromHtml(coloredText, Html.FROM_HTML_MODE_LEGACY);
                         setCal.setText(spanned);
                     }
-                }else if(bmrs > todayCal){
+                }else if(bmrs >= todayCal){
                     int check = (bmrs - todayCal) ;
                     if(check <= 100){
                         String todayCalString = String.valueOf(todayCal);
