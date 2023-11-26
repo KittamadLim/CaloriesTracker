@@ -187,8 +187,8 @@ public class MainActivity extends AppCompatActivity {
                         setCal.setText(spanned);
                     }
 
-                }else{
-                    setCal.setText(todayCal);
+                }else {
+                    setCal.setText(Integer.toString(todayCal));
                 }
 
 
