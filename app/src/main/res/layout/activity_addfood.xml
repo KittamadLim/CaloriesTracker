@@ -1,191 +1,235 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Addfood">
+    tools:context=".MainActivity">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:elevation="20dp"
+        android:id="@+id/layoutHeader2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="@drawable/header_backg"
+        android:padding="10dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/info_btn"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="30dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/backbtn"
+            android:tint="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/BMRcalculater2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Food"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/info_btn"
+            app:layout_constraintEnd_toStartOf="@id/help_btn"
+             />
+
+        <TextView
+            android:id="@+id/help_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TIP!"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintBottom_toBottomOf="@id/info_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/info_btn" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/calinfo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutHeader2">
 
         <LinearLayout
+            android:id="@+id/picture"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF"
+            android:gravity="center|center_horizontal|center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            app:layout_constraintTop_toTopOf="@id/calinfo"
+            tools:layout_editor_absoluteX="10dp"
+            tools:layout_editor_absoluteY="21dp">
 
-            <TextView
-                android:id="@+id/back_Btn"
+            <ImageView
+                android:id="@+id/imageViewFood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageButton
+                android:elevation="10dp"
+                android:id="@+id/imageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="0.01"
-                android:background="#2195F2"
-                android:padding="10dp"
-                android:text="Go back"
-                android:textAlignment="textStart"
-                android:textColor="@android:color/white"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/colorforinfo2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="5"
-                android:background="#2195F2"
-                android:padding="10dp"
-                android:textAlignment="textStart"
-                android:textColor="@android:color/white"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/help_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.01"
-                android:background="#2195F2"
-                android:padding="10dp"
-                android:text="TIP!"
-                android:textAlignment="textStart"
-                android:textColor="@android:color/white"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:src="@drawable/picture" />
 
         </LinearLayout>
 
-        <TextView
-
-            android:id="@+id/colorforinfo3"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="20sp"
-            android:background="#2195F2"
-            android:gravity="center"
-            android:padding="5sp"
-            android:text="Add your food"
-            android:textAlignment="gravity"
-            android:textColor="@android:color/white"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+            android:layout_margin="30sp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/picture"
+            app:layout_constraintVertical_bias="0.19"
+            tools:layout_editor_absoluteX="30dp">
 
-    </LinearLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutAddfood"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="5sp"
+                android:textColorHint="#B3676F78"
+                app:boxStrokeColor="#253A7E"
+                app:hintTextColor="#2192EE"
+                app:placeholderTextColor="#2192EE"
+                app:startIconDrawable="@drawable/fastfood">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/InputFood"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/inputfood"
+                    android:singleLine="true"
+                    android:textColorHighlight="#2195F2"
+                    android:textColorLink="#2195F2" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center|center_horizontal|center_vertical"
-        android:orientation="horizontal">
+            <com.google.android.material.textfield.TextInputLayout
 
-        <ImageView
-            android:id="@+id/imageViewFood"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+                android:id="@+id/layoutAddcal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="5sp"
+                android:textColorHint="#B3676F78"
+                app:boxStrokeColor="#253A7E"
+                app:hintTextColor="#2192EE"
+                app:placeholderTextColor="#2192EE"
+                app:startIconDrawable="@drawable/cal">
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_gallery" />
-    </LinearLayout>
+                <com.google.android.material.textfield.TextInputEditText
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="30sp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+                    android:id="@+id/InputCal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/inputcal"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/Food"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/food" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutAddprotein"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="5sp"
+                android:textColorHint="#B3676F78"
+                app:boxStrokeColor="#253A7E"
+                app:hintTextColor="#2192EE"
+                app:placeholderTextColor="#2192EE"
+                app:startIconDrawable="@drawable/right">
 
-        <EditText
-            android:id="@+id/InputFood"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/inputfood"
-            android:inputType="text" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/InputProtein"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/inputprotein"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:minLines="1"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/CAl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/cals" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutAddcarb"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="5sp"
+                android:textColorHint="#B3676F78"
+                app:boxStrokeColor="#253A7E"
+                app:hintTextColor="#2192EE"
+                app:placeholderTextColor="#2192EE"
+                app:startIconDrawable="@drawable/right">
 
-        <EditText
-            android:id="@+id/InputCal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/inputcal"
-            android:inputType="text" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/InputFlour"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/inputcarb"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/Protein"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/protein" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutAddfat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="5sp"
+                android:textColorHint="#B3676F78"
+                app:boxStrokeColor="#253A7E"
+                app:hintTextColor="#2192EE"
+                app:placeholderTextColor="#2192EE"
+                app:startIconDrawable="@drawable/right">
 
-        <EditText
-            android:id="@+id/InputProtein"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/inputprotein"
-            android:inputType="text" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/Inputfat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/inputfat"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/Flour"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/carb" />
+            <LinearLayout
+                android:elevation="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/InputFlour"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/inputcarb"
-            android:inputType="text" />
+                <Button
+                    android:id="@+id/save_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="30sp"
+                    android:backgroundTint="#4F79E1"
+                    android:text="@string/savefood" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/Fat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/fat" />
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/Inputfat"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/inputfat"
-            android:inputType="text" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <Button
-            android:id="@+id/save_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="30sp"
-            android:text="@string/savefood" />
 
-    </LinearLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
