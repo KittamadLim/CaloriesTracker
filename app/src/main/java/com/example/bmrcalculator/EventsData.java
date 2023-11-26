@@ -25,7 +25,6 @@ public class EventsData extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // Create Table for Daily Records
         String createTableDaily = "CREATE TABLE " + TABLE_NAME_DAILY + " ("
                 + DATE + " TEXT NOT NULL, "
                 + PICTURE + " TEXT NOT NULL, "
@@ -37,7 +36,6 @@ public class EventsData extends SQLiteOpenHelper {
                 + CALORIES + " INTEGER);";
         db.execSQL(createTableDaily);
 
-        // Create Table for BMR Records
         db.execSQL("CREATE TABLE " + TABLE_BMR + " ("
                 + DATE2 + " TEXT NOT NULL, "
                 + BMR2 + " DOUBLE);");

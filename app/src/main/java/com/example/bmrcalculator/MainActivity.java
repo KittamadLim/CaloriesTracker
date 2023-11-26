@@ -1,8 +1,5 @@
 package com.example.bmrcalculator;
 
-import static android.provider.BaseColumns._ID;
-
-import static com.example.bmrcalculator.Constants.BMR;
 import static com.example.bmrcalculator.Constants.BMR2;
 import static com.example.bmrcalculator.Constants.CALORIES;
 import static com.example.bmrcalculator.Constants.CARB;
@@ -22,18 +19,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Picture;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.jakewharton.threetenabp.AndroidThreeTen;
+
+import org.threeten.bp.LocalDateTime;
+import org.threeten.bp.format.DateTimeFormatter;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private EventsData events;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        AndroidThreeTen.init(this);
         final ImageView info_btn = findViewById(R.id.back_Btn);
         final ImageButton add_food = findViewById(R.id.add_btn);
 
@@ -69,11 +71,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Show History
-
         events = new EventsData(MainActivity.this);
         try{
             Cursor cursor = getEvents();
             Cursor cursorBMR = getBMR();
+            Cursor cursorCal = getRecentCal();
+            showTodayCal(cursorCal);
             setBMR(cursorBMR);
             showEvents(cursor);
         }finally{
@@ -94,12 +97,41 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor = db.query(TABLE_BMR, FROM, null, null, null, null, ORDER_BY);
         return cursor;
     }
+
+    private Cursor getRecentCal(){
+        String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+
+        String[] FROM = {DATE, CALORIES};
+        String ORDER_BY = DATE + " DESC";
+        String selection = "SUBSTR(" + DATE + ", 1, 10) = ?";
+        String[] selectionArgs = {currentDate};
+
+        SQLiteDatabase db = events.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_NAME_DAILY, FROM, selection, selectionArgs, null, null, ORDER_BY);
+
+        return cursor;
+    }
+
+    private void showTodayCal(Cursor cursor){
+        int todayCal = 0;
+        if(cursor!=null) {
+            while(cursor.moveToNext()) {
+                todayCal += (int) cursor.getFloat(1);
+                System.out.println(todayCal);
+            }
+        }
+       final TextView setCal = findViewById(R.id.calValue);
+       setCal.setText(Integer.toString(todayCal));
+    }
     private void setBMR(Cursor cursor){
         String bmr = null;
+        if(cursor!=null) {
             while(cursor.moveToNext()) {
                 bmr = String.valueOf((int) cursor.getFloat(1));
                 System.out.println(bmr);
             }
+        }
+
         final TextView setbmr = findViewById(R.id.Yourbmr_value);
         setbmr.setText(bmr);
     }
