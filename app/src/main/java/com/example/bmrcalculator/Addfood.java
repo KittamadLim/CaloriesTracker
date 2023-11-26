@@ -27,6 +27,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.io.ByteArrayOutputStream;
@@ -133,39 +134,65 @@ public class Addfood extends AppCompatActivity {
 
         final Button save_btn = findViewById(R.id.save_button);
         save_btn.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(Addfood.this);
-                builder.setMessage("Do you want to add this food ?");
+                if (isDataValid()){
+                    androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(Addfood.this);
+                    builder.setMessage("Do you want to add this food ?");
 
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // ทำงานเมื่อกด Yes
-                        events = new EventsData(Addfood.this);
-                        try {
-                            addDailies();
+                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // ทำงานเมื่อกด Yes
+                            events = new EventsData(Addfood.this);
+                            try {
+                                addDailies();
+                                // ตัวอย่างการปิด AlertDialog หลังจากทำงานเสร็จสิ้น
+                                dialog.dismiss();
+                            } finally {
+                                events.close();
+                            }
+                            Intent intent = new Intent(Addfood.this, MainActivity.class);
+                            startActivity(intent);
+
+                        }
+                    });
+
+                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // ทำงานเมื่อกด No
                             // ตัวอย่างการปิด AlertDialog หลังจากทำงานเสร็จสิ้น
                             dialog.dismiss();
-                        } finally {
-                            events.close();
                         }
-                        Intent intent = new Intent(Addfood.this, MainActivity.class);
-                        startActivity(intent);
+                    });
 
-                    }
-                });
+                    // สร้างและแสดง AlertDialog
+                    androidx.appcompat.app.AlertDialog dialog = builder.create();
+                    dialog.show();
+                }else{
+                    androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(Addfood.this);
+                    builder.setMessage("Please fill in all fields. If there is no data for any field, enter 0.");
+                    builder.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                        }
+                    });
+                    androidx.appcompat.app.AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
+                }
 
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        // ทำงานเมื่อกด No
-                        // ตัวอย่างการปิด AlertDialog หลังจากทำงานเสร็จสิ้น
-                        dialog.dismiss();
-                    }
-                });
 
-                // สร้างและแสดง AlertDialog
-                androidx.appcompat.app.AlertDialog dialog = builder.create();
-                dialog.show();
+            private boolean isDataValid() {
+                 EditText food_input = findViewById(R.id.InputFood);
+                 EditText cal_input = findViewById(R.id.InputCal);
+                 EditText protein_input = findViewById(R.id.InputProtein);
+                 EditText carb_input = findViewById(R.id.InputFlour);
+                 EditText fat_input = findViewById(R.id.Inputfat);
+                return !food_input.getText().toString().isEmpty() &&
+                        !cal_input.getText().toString().isEmpty() &&
+                        !protein_input.getText().toString().isEmpty() &&
+                        !carb_input.getText().toString().isEmpty() &&
+                        !fat_input.getText().toString().isEmpty();
             }
         });
     }
