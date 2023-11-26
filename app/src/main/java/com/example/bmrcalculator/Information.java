@@ -7,6 +7,7 @@ import android.text.InputFilter;
 import android.text.Spanned;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -27,7 +28,7 @@ public class Information extends AppCompatActivity {
         setContentView(R.layout.activity_infomation);
         DecimalFormat formatter = new DecimalFormat("#,###.##");
         final TextView cal_btn = findViewById(R.id.cal_btn1);
-        final TextView Back_btn = findViewById(R.id.info_btn);
+        final ImageView Back_btn = findViewById(R.id.info_btn);
         Intent intent = new Intent(Information.this, MainActivity.class);
         Back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
