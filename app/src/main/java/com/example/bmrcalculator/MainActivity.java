@@ -24,6 +24,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final TextView info_btn = findViewById(R.id.info_btn);
+        final ImageView info_btn = findViewById(R.id.info_btn);
         final ImageButton add_food = findViewById(R.id.add_btn);
 
         Intent intent1 = new Intent(MainActivity.this, Information.class);
