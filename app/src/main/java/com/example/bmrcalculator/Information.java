@@ -1,7 +1,13 @@
 package com.example.bmrcalculator;
 
+import static com.example.bmrcalculator.Constants.BMR2;
+import static com.example.bmrcalculator.Constants.DATE2;
+import static com.example.bmrcalculator.Constants.TABLE_BMR;
+
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.Spanned;
@@ -16,6 +22,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.jakewharton.threetenabp.AndroidThreeTen;
+import org.threeten.bp.LocalDateTime;
+import org.threeten.bp.format.DateTimeFormatter;
+
 import java.text.DecimalFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,6 +37,7 @@ public class Information extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_infomation);
+        AndroidThreeTen.init(this);
         DecimalFormat formatter = new DecimalFormat("#,###.##");
         final TextView cal_btn = findViewById(R.id.cal_btn1);
         final ImageView Back_btn = findViewById(R.id.info_btn);
@@ -54,8 +65,15 @@ public class Information extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (isDataValid()) {
+
                     calulate_bmr();
-                    intent.putExtra("bmr", bmr_cal);
+                    events = new EventsData(Information.this);
+                    try{
+                        addBMR();
+                    }finally {
+                        events.close();
+                    }
+
                     Toast.makeText(getApplicationContext(), "Calculate Success", Toast.LENGTH_SHORT).show();
                     new android.os.Handler().postDelayed(
                             new Runnable() {
@@ -148,6 +166,24 @@ public class Information extends AppCompatActivity {
         int bmrInt = (int)bmr_cal;
         bmr.setText(Integer.toString(bmrInt));
     }
+
+    private void addBMR(){
+        SQLiteDatabase db = events.getWritableDatabase();
+        LocalDateTime myDateObj = LocalDateTime.now();
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String formattedDate = myDateObj.format(myFormatObj);
+        ContentValues values = new ContentValues();
+        values.put(BMR2,bmr_cal);
+        values.put(DATE2,formattedDate);
+        long rowId = db.insert(TABLE_BMR, null, values);
+
+        if (rowId != -1) {
+            System.out.println("Inserted into the database with row ID: " + rowId);
+        } else {
+            System.out.println("Error inserting into the database");
+        }
+    }
+
 }
 
 class DecimalDigitsInputFilter implements InputFilter {
@@ -163,4 +199,6 @@ class DecimalDigitsInputFilter implements InputFilter {
             return "";
         return null;
     }
+
+
 }

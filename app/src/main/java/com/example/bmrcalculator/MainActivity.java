@@ -3,13 +3,16 @@ package com.example.bmrcalculator;
 import static android.provider.BaseColumns._ID;
 
 import static com.example.bmrcalculator.Constants.BMR;
+import static com.example.bmrcalculator.Constants.BMR2;
 import static com.example.bmrcalculator.Constants.CALORIES;
 import static com.example.bmrcalculator.Constants.CARB;
 import static com.example.bmrcalculator.Constants.DATE;
+import static com.example.bmrcalculator.Constants.DATE2;
 import static com.example.bmrcalculator.Constants.FAT;
 import static com.example.bmrcalculator.Constants.FOOD;
 import static com.example.bmrcalculator.Constants.PICTURE;
 import static com.example.bmrcalculator.Constants.PROTEIN;
+import static com.example.bmrcalculator.Constants.TABLE_BMR;
 import static com.example.bmrcalculator.Constants.TABLE_NAME_DAILY;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -85,10 +88,10 @@ public class MainActivity extends AppCompatActivity {
         return cursor;
     }
     private Cursor getBMR(){
-        String[] FROM = {DATE, BMR};
-        String ORDER_BY = DATE + " ASC";
+        String[] FROM = {DATE2, BMR2};
+        String ORDER_BY = DATE2 + " ASC";
         SQLiteDatabase db = events.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_NAME_DAILY, FROM, null, null, null, null, ORDER_BY);
+        Cursor cursor = db.query(TABLE_BMR, FROM, null, null, null, null, ORDER_BY);
         return cursor;
     }
     private void setBMR(Cursor cursor){
