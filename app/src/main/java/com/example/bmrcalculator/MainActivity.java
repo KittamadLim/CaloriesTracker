@@ -19,6 +19,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -46,6 +48,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         final ImageView info_btn = findViewById(R.id.back_Btn);
         final ImageButton add_food = findViewById(R.id.add_btn);
+        final TextView secretbtn = findViewById(R.id.BMRcalculater);
+        secretbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("ผู้จัดทำ");
+                builder.setMessage("นรินทร์ภัทร์ ลิมปวิทยาพร 6409682603" +
+                        "\nันตภณ ว่องพรรณงาม 6409682629" +  "\nปุณณ อัจฉริยปัญญา 6409682801" +  "\nพศิน แสงอรุณ 6409682835" + "\n");
+//                1.นรินทร์ภัทร์ ลิมปวิทยาพร 6409682603
+//                2.กันตภณ ว่องพรรณงาม 6409682629
+//                3.ปุณณ อัจฉริยปัญญา 6409682801
+//                4.พศิน แสงอรุณ 6409682835:
+
+                builder.setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // ไม่ทำตามทิบ
+                    }
+                });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+
 
         Intent intent1 = new Intent(MainActivity.this, Information.class);
         Intent intent2 = new Intent(MainActivity.this, Addfood.class);
