@@ -27,7 +27,7 @@ public class Information extends AppCompatActivity {
         setContentView(R.layout.activity_infomation);
         DecimalFormat formatter = new DecimalFormat("#,###.##");
         final TextView cal_btn = findViewById(R.id.cal_btn1);
-        final TextView Back_btn = findViewById(R.id.back_Btn);
+        final TextView Back_btn = findViewById(R.id.info_btn);
         Intent intent = new Intent(Information.this, MainActivity.class);
         Back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
