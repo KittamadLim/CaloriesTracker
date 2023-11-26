@@ -87,6 +87,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
+
+        final TextView info = findViewById(R.id.textgocal);
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent1);
+            }
+        });
         //Add Food Function
         add_food.setOnClickListener(new View.OnClickListener() {
             @Override
