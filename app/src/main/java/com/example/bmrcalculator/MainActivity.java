@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
                         String coloredText = "<font color='#7CFC00'>" + todayCalString + "</font>";
                         Spanned spanned = Html.fromHtml(coloredText, Html.FROM_HTML_MODE_LEGACY);
                         setCal.setText(spanned);
-                    }else if(check > 100 && check <= 200){
+                    }else if(check > 100 && check <= 300){
                         String todayCalString = String.valueOf(todayCal);
                         String coloredText = "<font color='#1E90FF'>" + todayCalString + "</font>";
                         Spanned spanned = Html.fromHtml(coloredText, Html.FROM_HTML_MODE_LEGACY);
@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
                         String coloredText = "<font color='#7CFC00'>" + todayCalString + "</font>";
                         Spanned spanned = Html.fromHtml(coloredText, Html.FROM_HTML_MODE_LEGACY);
                         setCal.setText(spanned);
-                    }else if(check > 100 && check <= 200){
+                    }else if(check > 100 && check <= 300){
                         String todayCalString = String.valueOf(todayCal);
                         String coloredText = "<font color='#1E90FF'>" + todayCalString + "</font>";
                         Spanned spanned = Html.fromHtml(coloredText, Html.FROM_HTML_MODE_LEGACY);
