@@ -50,77 +50,93 @@
         app:layout_constraintTop_toBottomOf="@id/layoutHeader2">
 
         <LinearLayout
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginRight="40dp"
-            android:orientation="vertical">
-            <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/calinfo"
+            tools:layout_editor_absoluteX="35dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/InputlayoutAge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:paddingBottom="3sp"
+                android:textColorHint="#B3676F78"
+                app:boxStrokeColor="#253A7E"
+                app:hintTextColor="#2192EE"
+                app:placeholderTextColor="#2192EE"
+                app:startIconDrawable="@drawable/age">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/age_text"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/age_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="number" />
+                    android:hint="Enter your age"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:textColorHighlight="#2195F2"
+                    android:textColorLink="#2195F2" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            </LinearLayout>
-
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/InputlayoutHeight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:paddingBottom="3sp"
+                android:textColorHint="#B3676F78"
+                app:boxStrokeColor="#253A7E"
+                app:hintTextColor="#2192EE"
+                app:placeholderTextColor="#2192EE"
+                app:startIconDrawable="@drawable/height">
 
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/height_text"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/height_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="number" />
+                    android:hint="Enter your height"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:textColorHighlight="#2195F2"
+                    android:textColorLink="#2195F2" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            </LinearLayout>
-
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/InputlayoutWeight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:paddingBottom="3sp"
+                android:textColorHint="#B3676F78"
+                app:boxStrokeColor="#253A7E"
+                app:hintTextColor="#2192EE"
+                app:placeholderTextColor="#2192EE"
+                app:startIconDrawable="@drawable/weight">
 
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/weight_text"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <EditText
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/weight_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="number" />
-            </LinearLayout>
+                    android:hint="Enter your weight"
+                    android:inputType="number"
+                    android:singleLine="true"
+                    android:textColorHighlight="#2195F2"
+                    android:textColorLink="#2195F2" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bmrbox"
+                android:backgroundTint="#2193EF"
+                android:padding="10dp"
+                android:text="Sex"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
             <RadioGroup
                 android:id="@+id/genderGroup"
@@ -148,9 +164,13 @@
 
             <TextView
                 android:id="@+id/textView3"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bmrbox"
+                android:backgroundTint="#2193EF"
+                android:padding="10dp"
                 android:text="@string/workout_text"
+                android:textColor="#FFFFFF"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -200,8 +220,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/roundstyle"
-                android:backgroundTint="#2195F2"
+                android:backgroundTint="#3A62CD"
                 android:padding="10dp"
                 android:text="@string/cal_btn"
                 android:textAlignment="viewEnd"
@@ -210,6 +231,7 @@
                 android:textStyle="bold" />
 
             <LinearLayout
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -234,6 +256,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
