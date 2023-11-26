@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         String[] FROM = {DATE, BMR};
         String ORDER_BY = DATE + " ASC";
         SQLiteDatabase db = events.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_NAME_DAILY, FROM, null, null, null, null, ORDER_BY, "1");
+        Cursor cursor = db.query(TABLE_NAME_DAILY, FROM, null, null, null, null, ORDER_BY);
         return cursor;
     }
     private void setBMR(Cursor cursor){
