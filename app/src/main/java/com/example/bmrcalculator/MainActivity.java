@@ -2,6 +2,7 @@ package com.example.bmrcalculator;
 
 import static android.provider.BaseColumns._ID;
 
+import static com.example.bmrcalculator.Constants.BMR;
 import static com.example.bmrcalculator.Constants.CALORIES;
 import static com.example.bmrcalculator.Constants.CARB;
 import static com.example.bmrcalculator.Constants.DATE;
@@ -65,9 +66,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //Show History
+
         events = new EventsData(MainActivity.this);
         try{
             Cursor cursor = getEvents();
+            Cursor cursorBMR = getBMR();
+            setBMR(cursorBMR);
             showEvents(cursor);
         }finally{
             events.close();
@@ -80,12 +84,25 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor = db.query(TABLE_NAME_DAILY, FROM, null, null, null, null, ORDER_BY);
         return cursor;
     }
-
+    private Cursor getBMR(){
+        String[] FROM = {DATE, BMR};
+        String ORDER_BY = DATE + " DESC";
+        SQLiteDatabase db = events.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_NAME_DAILY, FROM, null, null, null, null, ORDER_BY);
+        return cursor;
+    }
+    private void setBMR(Cursor cursor){
+        String bmr = null;
+        while(cursor.moveToNext()) {
+            bmr = String.valueOf(cursor.getFloat(1));
+        }
+        final TextView setbmr = findViewById(R.id.Yourbmr_value);
+        setbmr.setText(bmr);
+    }
     private void showEvents(Cursor cursor) {
         datas.clear();
         int columnIndex = -1;
         while(cursor.moveToNext()) {
-
             if(cursor!=null) {
                 String title = cursor.getString(1);
                 String imageString = cursor.getString(2);
