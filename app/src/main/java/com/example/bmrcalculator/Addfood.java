@@ -135,12 +135,37 @@ public class Addfood extends AppCompatActivity {
         save_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                events = new EventsData(Addfood.this);
-                try{
-                    addDailies();
-                }finally {
-                    events.close();
-                }
+                androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(Addfood.this);
+                builder.setMessage("Do you want to add this food ?");
+
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // ทำงานเมื่อกด Yes
+                        events = new EventsData(Addfood.this);
+                        try {
+                            addDailies();
+                            // ตัวอย่างการปิด AlertDialog หลังจากทำงานเสร็จสิ้น
+                            dialog.dismiss();
+                        } finally {
+                            events.close();
+                        }
+                        Intent intent = new Intent(Addfood.this, MainActivity.class);
+                        startActivity(intent);
+
+                    }
+                });
+
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // ทำงานเมื่อกด No
+                        // ตัวอย่างการปิด AlertDialog หลังจากทำงานเสร็จสิ้น
+                        dialog.dismiss();
+                    }
+                });
+
+                // สร้างและแสดง AlertDialog
+                androidx.appcompat.app.AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
     }
