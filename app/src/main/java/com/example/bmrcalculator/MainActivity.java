@@ -86,18 +86,16 @@ public class MainActivity extends AppCompatActivity {
     }
     private Cursor getBMR(){
         String[] FROM = {DATE, BMR};
-        String ORDER_BY = DATE + " DESC";
+        String ORDER_BY = DATE + " ASC";
         SQLiteDatabase db = events.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_NAME_DAILY, FROM, null, null, null, null, ORDER_BY);
+        Cursor cursor = db.query(TABLE_NAME_DAILY, FROM, null, null, null, null, ORDER_BY, "1");
         return cursor;
     }
     private void setBMR(Cursor cursor){
         String bmr = null;
-        if(cursor!=null) {
             while(cursor.moveToNext()) {
-                bmr = String.valueOf(cursor.getFloat(1));
+                bmr = String.valueOf((int) cursor.getFloat(1));
             }
-        }
         final TextView setbmr = findViewById(R.id.Yourbmr_value);
         setbmr.setText(bmr);
     }

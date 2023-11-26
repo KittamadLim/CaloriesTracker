@@ -110,9 +110,9 @@ public class Information extends AppCompatActivity {
         bmr.setFilters(new InputFilter[]{
                 new DecimalDigitsInputFilter(8, 2)
         });
-        bmr.setText(Double.toString(bmr_cal));
+        int bmrInt = (int)bmr_cal;
+        bmr.setText(Integer.toString(bmrInt));
     }
-
 }
 
 class DecimalDigitsInputFilter implements InputFilter {
