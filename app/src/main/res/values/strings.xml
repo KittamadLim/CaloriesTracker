@@ -10,7 +10,7 @@
     <string name="female_text">Female</string>
     <string name="cal_btn">Calculate BMR</string>
     <string name="age_text">Age</string>
-    <string name="workout_text">workout frequency</string>
+    <string name="workout_text">Workout Frequency</string>
     <string name="frequency_none">None</string>
     <string name="frequency_low">1-3 days/week</string>
     <string name="frequency_medium">3-5 days/week</string>
