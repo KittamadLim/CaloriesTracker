@@ -198,10 +198,22 @@ public class Addfood extends AppCompatActivity {
         });
     }
 
+    private int calcualteCalories(){
+        final EditText protein_input = findViewById(R.id.InputProtein);
+        final EditText carb_input = findViewById(R.id.InputFlour);
+        final EditText fat_input = findViewById(R.id.Inputfat);
+
+        //Calculate Calories
+        int protein = Integer.parseInt(protein_input.getText().toString());
+        int carb = Integer.parseInt(carb_input.getText().toString());
+        int fat = Integer.parseInt(fat_input.getText().toString());
+        int cal_input = (protein*4)+(carb*4)+(fat*9);
+        return cal_input;
+    }
 
     private void addDailies(){
         final EditText food_input = findViewById(R.id.InputFood);
-        final EditText cal_input = findViewById(R.id.InputCal);
+
         final EditText protein_input = findViewById(R.id.InputProtein);
         final EditText carb_input = findViewById(R.id.InputFlour);
         final EditText fat_input = findViewById(R.id.Inputfat);
@@ -213,6 +225,9 @@ public class Addfood extends AppCompatActivity {
         String formattedDate = myDateObj.format(myFormatObj);
         Bitmap bitmap=null;
         String imageString=null;
+
+
+
         try{
             if(image_uri!=null)
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), image_uri);
@@ -234,7 +249,7 @@ public class Addfood extends AppCompatActivity {
         values.put(PROTEIN, Integer.parseInt(protein_input.getText().toString()));
         values.put(CARB,Integer.parseInt(carb_input.getText().toString()));
         values.put(FAT,Integer.parseInt(fat_input.getText().toString()));
-        values.put(CALORIES,Integer.parseInt(cal_input.getText().toString()));
+        values.put(CALORIES,calcualteCalories());
         values.put(BMR,bmr);
         long rowId = db.insert(TABLE_NAME_DAILY, null, values);
 

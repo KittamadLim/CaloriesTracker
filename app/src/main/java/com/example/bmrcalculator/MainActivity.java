@@ -120,10 +120,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     private Cursor getEvents() {
+        String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
         String[] FROM = {DATE, FOOD, PICTURE ,CARB,CALORIES,PROTEIN,FAT};
         String ORDER_BY = DATE + " DESC";
+        String selection = "SUBSTR(" + DATE + ", 1, 10) = ?";
+        String[] selectionArgs = {currentDate};
         SQLiteDatabase db = events.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_NAME_DAILY, FROM, null, null, null, null, ORDER_BY);
+        Cursor cursor = db.query(TABLE_NAME_DAILY, FROM, selection, selectionArgs, null, null, ORDER_BY);
         return cursor;
     }
     private Cursor getBMR(){
