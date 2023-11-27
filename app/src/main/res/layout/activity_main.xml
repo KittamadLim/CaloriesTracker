@@ -57,8 +57,6 @@
             android:id="@+id/layoutcal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
             android:layout_marginBottom="30dp"
             android:background="@drawable/bmrbox"
             android:orientation="horizontal"
@@ -95,8 +93,6 @@
             android:id="@+id/layoutbmr"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
             android:layout_marginBottom="5dp"
             android:layout_weight="1"
             android:background="@drawable/bmrbox"
@@ -145,7 +141,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:foregroundGravity="bottom|right"
-            android:padding="20dp"
+            android:padding="18dp"
             android:scrollbars="vertical" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -160,10 +156,26 @@
         android:background="@null"
         android:elevation="10dp"
         android:foregroundGravity="bottom"
-        android:maxHeight="75dp"
+        android:maxHeight="70dp"
         android:scaleType="centerInside"
         android:src="@drawable/plus2"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/history_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="5dp"
+        android:adjustViewBounds="true"
+        android:background="@null"
+        android:elevation="10dp"
+        android:foregroundGravity="bottom"
+        android:scaleType="centerInside"
+        android:src="@drawable/history"
+        app:layout_constraintBottom_toTopOf="@id/add_btn"
         app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

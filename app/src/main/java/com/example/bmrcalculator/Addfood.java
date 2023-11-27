@@ -186,12 +186,10 @@ public class Addfood extends AppCompatActivity {
 
             private boolean isDataValid() {
                  EditText food_input = findViewById(R.id.InputFood);
-                 EditText cal_input = findViewById(R.id.InputCal);
                  EditText protein_input = findViewById(R.id.InputProtein);
                  EditText carb_input = findViewById(R.id.InputFlour);
                  EditText fat_input = findViewById(R.id.Inputfat);
                 return !food_input.getText().toString().isEmpty() &&
-                        !cal_input.getText().toString().isEmpty() &&
                         !protein_input.getText().toString().isEmpty() &&
                         !carb_input.getText().toString().isEmpty() &&
                         !fat_input.getText().toString().isEmpty();
