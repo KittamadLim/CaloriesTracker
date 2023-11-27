@@ -91,11 +91,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="30sp"
+            android:layout_margin="30dp"
             android:layout_weight="1"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/picture">
+            app:layout_constraintTop_toBottomOf="@id/picture"
+            tools:layout_editor_absoluteX="30dp">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layoutAddfood"
@@ -195,11 +196,12 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@drawable/roundstyle2"
-                    android:padding="5dp"
-                    android:text="Calculate"
+                    android:padding="10dp"
+                    android:text="Calculate Cal"
                     android:textAlignment="viewEnd"
                     android:textColor="#2195F2"
-                    android:textSize="20sp" />
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
                 <Space
                     android:layout_width="wrap_content"
@@ -215,8 +217,30 @@
                     android:backgroundTint="#4F79E1"
                     android:padding="5dp"
                     android:text="@string/savefood"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:elevation="10dp">
+
+                <TextView
+                    android:id="@+id/calview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bmrbox"
+                    android:gravity="center"
+                    android:hint="Calories"
+                    android:padding="10dp"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
+                    android:textColor="#2193F0"
+                    android:textSize="22sp" />
             </LinearLayout>
 
         </LinearLayout>
