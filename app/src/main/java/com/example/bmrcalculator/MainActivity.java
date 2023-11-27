@@ -12,6 +12,7 @@ import static com.example.bmrcalculator.Constants.PROTEIN;
 import static com.example.bmrcalculator.Constants.TABLE_BMR;
 import static com.example.bmrcalculator.Constants.TABLE_NAME_DAILY;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -50,10 +51,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         AndroidThreeTen.init(this);
+
         final ImageView info_btn = findViewById(R.id.back_Btn);
         final ImageButton add_food = findViewById(R.id.add_btn);
         final TextView secretbtn = findViewById(R.id.BMRcalculater);
         int daybmr = 0 ;
+
+
         secretbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+
+
 
 
         Intent intent1 = new Intent(MainActivity.this, Information.class);
@@ -118,7 +124,37 @@ public class MainActivity extends AppCompatActivity {
         }finally{
             events.close();
         }
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                showExitAlertDialog();
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
     }
+
+    private void showExitAlertDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle("Exit?");
+        builder.setMessage("Are you sure you want to exit?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Continue with the back action
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
     private Cursor getEvents() {
         String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
         String[] FROM = {DATE, FOOD, PICTURE ,CARB,CALORIES,PROTEIN,FAT};

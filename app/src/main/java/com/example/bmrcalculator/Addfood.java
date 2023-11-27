@@ -1,5 +1,6 @@
 package com.example.bmrcalculator;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -196,6 +197,35 @@ public class Addfood extends AppCompatActivity {
                         !fat_input.getText().toString().isEmpty();
             }
         });
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                showExitAlertDialog();
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
+    }
+
+    private void showExitAlertDialog() {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(Addfood.this);
+        builder.setTitle("Exit?");
+        builder.setMessage("Do you want to leave this page ?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(Addfood.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Continue with the back action
+            }
+        });
+
+        android.app.AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     private int calcualteCalories(){
