@@ -157,35 +157,45 @@ public class Information extends AppCompatActivity {
         double age = Double.parseDouble(age_input.getText().toString());
 
 
-        if(checkedRadioFrequency.getText().equals("none")){
-            if(checkedRadioGender.getText().equals("male")){
+        if(checkedRadioFrequency.getText().equals("None")){
+            if(checkedRadioGender.getText().equals("Male")){
                 bmr_cal =(88.362+(13.397*weight)+(4.799*height)-(5.677*age))*1.2;
+                System.out.println("None , Male");
             }else{
                 bmr_cal = (447.593+(9.247*weight)+(3.098*height)-(4.330*age))*1.2;
+                System.out.println("None , Female");
             }
         }else if(checkedRadioFrequency.getText().equals("1-3 days/week")){
-            if(checkedRadioGender.getText().equals("male")){
+            if(checkedRadioGender.getText().equals("Male")){
                 bmr_cal =(88.362+(13.397*weight)+(4.799*height)-(5.677*age))*1.375;
+                System.out.println("1-3 days/week , Male");
             }else{
                 bmr_cal =(447.593+(9.247*weight)+(3.098*height)-(4.330*age))*1.375;
+                System.out.println("1-3 days/week , Female");
             }
         }else if(checkedRadioFrequency.getText().equals("3-5 days/week")){
-            if(checkedRadioGender.getText().equals("male")){
+            if(checkedRadioGender.getText().equals("Male")){
                 bmr_cal =(88.362+(13.397*weight)+(4.799*height)-(5.677*age))*1.55;
+                System.out.println("3-5 days/week , Male");
             }else{
                 bmr_cal =(447.593+(9.247*weight)+(3.098*height)-(4.330*age))*1.55;
+                System.out.println("3-5 days/week , Female");
             }
         }else if(checkedRadioFrequency.getText().equals("6-7 days/week")){
-            if(checkedRadioGender.getText().equals("male")){
+            if(checkedRadioGender.getText().equals("Male")){
                 bmr_cal =(88.362+(13.397*weight)+(4.799*height)-(5.677*age))*1.725;
+                System.out.println("6-7 days/week , Male");
             }else{
                 bmr_cal =(447.593+(9.247*weight)+(3.098*height)-(4.330*age))*1.725;
+                System.out.println("6-7 days/week , Female");
             }
         }else{
-            if(checkedRadioGender.getText().equals("male")){
+            if(checkedRadioGender.getText().equals("Male")){
                 bmr_cal =(88.362+(13.397*weight)+(4.799*height)-(5.677*age))*1.9;
+                System.out.println("Other/Pro , Male");
             }else{
                 bmr_cal =(447.593+(9.247*weight)+(3.098*height)-(4.330*age))*1.9;
+                System.out.println("Other/Pro , Female");
             }
         }
 
