@@ -35,6 +35,13 @@ public class History extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         AndroidThreeTen.init(this);
+        events = new EventsData(History.this);
+        try{
+            Cursor cursor = getEvents();
+            showEvents(cursor);
+        }finally{
+            events.close();
+        }
 
     }
     private Cursor getEvents() {
@@ -58,7 +65,7 @@ public class History extends AppCompatActivity {
                 datas.add(new Data("" + title, "" + cal, "" + protein, "" + carb, "" + fat, imageString));
             }
         }
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_view_history);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         mAdapter = new MyAdapter(datas);
