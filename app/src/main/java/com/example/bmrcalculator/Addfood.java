@@ -133,7 +133,16 @@ public class Addfood extends AppCompatActivity {
                 dialog.show();
             }
         });
-
+        final TextView cal_btn = findViewById(R.id.calculatefood_btn) ;
+        cal_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int t_cal = calcualteCalories() ;
+                System.out.println(t_cal);
+                final TextView setcal = findViewById(R.id.calview) ;
+                setcal.setText(String.valueOf(t_cal));
+            }
+        });
         final Button save_btn = findViewById(R.id.save_button);
         save_btn.setOnClickListener(new View.OnClickListener() {
 
