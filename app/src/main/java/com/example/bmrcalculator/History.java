@@ -9,13 +9,18 @@ import static com.example.bmrcalculator.Constants.PICTURE;
 import static com.example.bmrcalculator.Constants.PROTEIN;
 import static com.example.bmrcalculator.Constants.TABLE_NAME_DAILY;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
@@ -42,6 +47,36 @@ public class History extends AppCompatActivity {
         }finally{
             events.close();
         }
+
+        final ImageView back_Btn = findViewById(R.id.info_btn);
+        back_Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(History.this);
+                builder.setMessage("Do you want to leave this page ?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent intent = new Intent(History.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                    }
+                });
+                androidx.appcompat.app.AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                showExitAlertDialog();
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
 
     }
     private Cursor getEvents() {
@@ -71,4 +106,27 @@ public class History extends AppCompatActivity {
         mAdapter = new MyAdapter(datas);
         recyclerView.setAdapter(mAdapter);
     }
+
+    private void showExitAlertDialog() {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(History.this);
+        builder.setTitle("Exit?");
+        builder.setMessage("Do you want to leave this page ?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(History.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Continue with the back action
+            }
+        });
+
+        android.app.AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
 }
