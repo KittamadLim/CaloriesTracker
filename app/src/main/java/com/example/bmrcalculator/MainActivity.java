@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         final ImageView info_btn = findViewById(R.id.back_Btn);
         final ImageButton add_food = findViewById(R.id.add_btn);
+        final ImageButton His_btn = findViewById(R.id.history_btn);
         final TextView secretbtn = findViewById(R.id.BMRcalculater);
         int daybmr = 0 ;
 
@@ -82,10 +83,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
         Intent intent1 = new Intent(MainActivity.this, Information.class);
         Intent intent2 = new Intent(MainActivity.this, Addfood.class);
-
+        Intent intent3 = new Intent(MainActivity.this, History.class) ;
         //BMR Calulator Function
         info_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,8 +111,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
-
-        //Show History
+        //check history
+        His_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent3);
+            }
+        });
         events = new EventsData(MainActivity.this);
         try{
             Cursor cursor = getEvents();
