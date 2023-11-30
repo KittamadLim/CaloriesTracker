@@ -202,7 +202,10 @@ public class MainActivity extends AppCompatActivity {
         final TextView setCal = findViewById(R.id.calValue);
         Cursor forbmr = getBMR() ;
         int bmrs = BMRfind(forbmr) ;
-                if(todayCal > bmrs){
+                if(todayCal == 0){
+                        setCal.setText(Integer.toString(todayCal));
+                }
+                 else if(todayCal > bmrs){
                     int check = (todayCal - bmrs) ;
                     if(check <= 100){
                         String todayCalString = String.valueOf(todayCal);
@@ -239,8 +242,6 @@ public class MainActivity extends AppCompatActivity {
                         setCal.setText(spanned);
                     }
 
-                }else {
-                    setCal.setText(Integer.toString(todayCal));
                 }
 
 
